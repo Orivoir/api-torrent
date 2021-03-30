@@ -25,27 +25,27 @@ app
     response.setHeader('X-Powered-By', 'PHP/5.1.2-1');
     next();
   })
-  // .use((request, response, next) => {
+  .use((request, response, next) => {
 
-  //   if(request.url === "/") {
-  //     return next();
-  //   }
+    if(request.url === "/") {
+      return next();
+    }
 
-  //   const apiKey = request.headers['x-api-key'];
+    const apiKey = request.headers['x-api-key'];
 
-  //   if(!existsKey(apiKey)) {
+    if(!existsKey(apiKey)) {
 
-  //     response.statusCode = 403;
-  //     response.json({
-  //       success: false,
-  //       message: "Access denied"
-  //     });
+      response.statusCode = 403;
+      response.json({
+        success: false,
+        message: "Access denied"
+      });
 
-  //   } else {
-  //     next();
-  //   }
+    } else {
+      next();
+    }
 
-  // })
+  })
 ;
 
 app
